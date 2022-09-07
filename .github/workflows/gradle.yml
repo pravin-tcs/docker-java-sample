@@ -32,3 +32,16 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+        
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag saransanthosh/sarans-java:v4
+    
+    - name: docker login
+      env:
+        DOCKER_USER:  ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+ 
+    - name: push the docker image
+      run: docker push saransanthosh/sarans-java:v4
