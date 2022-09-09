@@ -34,7 +34,7 @@ jobs:
         arguments: build
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag saransanthosh/sarans:v4
+      run: docker build . --file Dockerfile --tag saransanthosh/sarans-java:v7
     
     - name: docker login
       env:
@@ -44,4 +44,4 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
  
     - name: push the docker image
-      run: docker push saransanthosh/sarans:v4
+      run: docker push saransanthosh/sarans-java:v7
